@@ -1,0 +1,1 @@
+c:\Users\vztpv\Desktop\Clau\ClauTextRS\project\target\rls\debug\libproject-2e28b3f6ed9ddb8d.rmeta: c:\Users\vztpv\Desktop\Clau\ClauTextRS\project\src\itemtype.rs c:\Users\vztpv\Desktop\Clau\ClauTextRS\project\src\lib.rs c:\Users\vztpv\Desktop\Clau\ClauTextRS\project\src\utility.rs
