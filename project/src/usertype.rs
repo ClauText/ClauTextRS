@@ -1,32 +1,32 @@
 
 
 
-use itemtype::item_type;
+use itemtype::ItemType;
 use std::vec::Vec;
 use std::rc::Rc;
 use std::collections::VecDeque;
 use std::cell::RefCell;
 
 #[derive(Debug, Clone)]
-pub struct user_type
+pub struct UserType
 {
     pub name : String,
     pub ilist : Vec<i32>,
-    pub item_list : Vec<item_type>,
-    pub user_type_list : VecDeque<Option<Rc<RefCell<user_type>>>>,
-    pub parent : Option<Rc<RefCell<user_type>>>,
+    pub item_list : Vec<ItemType>,
+    pub UserTypeList : VecDeque<Option<Rc<RefCell<UserType>>>>,
+    pub parent : Option<Rc<RefCell<UserType>>>,
 }
 
-impl user_type
+impl UserType
 {
    /* pub fn clone(&self) -> Self
     {
-        let mut x = user_type{name : self.name.clone(), ilist : self.ilist.clone(), 
-                                    item_list : self.item_list.clone(), user_type_list : VecDeque::new(), parent : Option::None};
+        let mut x = UserType{name : self.name.clone(), ilist : self.ilist.clone(), 
+                                    item_list : self.item_list.clone(), UserTypeList : VecDeque::new(), parent : Option::None};
         
-        if self.user_type_list.is_empty() { return x; }
+        if self.UserTypeList.is_empty() { return x; }
 
-        x.user_type_list = self.user_type_list.clone();
+        x.UserTypeList = self.UserTypeList.clone();
         
 
         x
@@ -34,12 +34,12 @@ impl user_type
     */
 }
 
-impl user_type
+impl UserType
 {
     pub fn new(name : String) -> Self 
     {
-        user_type{
-            name : name.clone(), ilist : Vec::new(), item_list : Vec::new(), user_type_list : VecDeque::new(), parent : Option::None
+        UserType{
+            name : name.clone(), ilist : Vec::new(), item_list : Vec::new(), UserTypeList : VecDeque::new(), parent : Option::None
         }
     }
 
@@ -67,12 +67,12 @@ impl user_type
             result += " \n";
         }
 
-        let n = self.user_type_list.len();
+        let n = self.UserTypeList.len();
   
         for i in 0..n 
         {
             {
-                match &self.user_type_list[i] {
+                match &self.UserTypeList[i] {
                     Some(x) => {
                         let name = x.borrow().get_name();
                         if name.is_empty() {
@@ -88,7 +88,7 @@ impl user_type
                 }
             }
             result += " { ";
-            match &self.user_type_list[i] { 
+            match &self.UserTypeList[i] { 
                 Some(x) => { 
                     let temp = x.borrow();
                     let temp2 = temp.to_string();
@@ -115,33 +115,33 @@ impl user_type
     pub fn add_item(&mut self, name : String, value : String)
     {
         self.ilist.push(1);
-        self.item_list.push(item_type::new(name, value));
+        self.item_list.push(ItemType::new(name, value));
     }
-    pub fn add_user_type_item(&mut self, ut : &mut user_type) 
+    pub fn add_UserType_item(&mut self, ut : &mut UserType) 
     {
         self.ilist.push(2);
         
         ut.parent = self.parent.clone();
-        self.user_type_list.push_back(Option::from(Rc::new(RefCell::new(ut.clone()))));
+        self.UserTypeList.push_back(Option::from(Rc::new(RefCell::new(ut.clone()))));
     }
 
          // link?
-    pub fn insert_user_type_item(&mut self, other : &mut Self) 
+    pub fn insert_UserType_item(&mut self, other : &mut Self) 
     {
-        let idx : usize = self.user_type_list.len() - 1;
+        let idx : usize = self.UserTypeList.len() - 1;
         if idx >= 0 {
-            self.add_user_type_item(other);
+            self.add_UserType_item(other);
         }
     }
 
-    pub fn get_user_type_list_size(&self) -> usize
+    pub fn get_UserTypeList_size(&self) -> usize
     {
-        return self.user_type_list.len();
+        return self.UserTypeList.len();
     }
 
-    pub fn get_user_type_list(&self, idx : usize) -> Option<Rc<RefCell<user_type>>>
+    pub fn get_UserTypeList(&self, idx : usize) -> Option<Rc<RefCell<UserType>>>
     {
-        return self.user_type_list[idx].clone();
+        return self.UserTypeList[idx].clone();
     }
 }
 

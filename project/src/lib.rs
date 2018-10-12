@@ -4,7 +4,7 @@ mod itemtype;
 mod utility;
 
 
-use itemtype::item_type;
+use itemtype::ItemType;
 use utility::Utility;
 use std::io::prelude::*;
 use std::fs::File;

@@ -4,17 +4,17 @@
 //! 
 
 #[derive(Debug, Clone)]
-pub struct item_type
+pub struct ItemType
 {
     name : String,
     value : String
 }
 
 
-impl item_type
+impl ItemType
 { 
     pub fn new(name : String, value : String) -> Self {
-        item_type{name : name, value : value}
+        ItemType{name : name, value : value}
     }
 
     pub fn get_name(&self) -> &String {
