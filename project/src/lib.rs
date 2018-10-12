@@ -4,18 +4,12 @@ mod itemtype;
 mod utility;
 
 
-use itemtype::ItemType;
-use utility::Utility;
-use std::io::prelude::*;
-use std::fs::File;
-
-
 #[cfg(test)]
 mod tests {
     #[test]
     fn itemtype_works() {
-        //! ::itemtype::item_type, first :: appear!
-        let mut x : ::itemtype::item_type = ::itemtype::item_type::new("abc".to_string(), "def".to_string());
+        //! ::itemtype::ItemType, first :: appear!
+        let mut x : ::itemtype::ItemType = ::itemtype::ItemType::new("abc".to_string(), "def".to_string());
         
         assert!(*x.get_name() == "abc".to_string());
         assert!(*x.get_value() == "def".to_string());

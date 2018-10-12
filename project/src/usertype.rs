@@ -13,7 +13,7 @@ pub struct UserType
     pub name : String,
     pub ilist : Vec<i32>,
     pub item_list : Vec<ItemType>,
-    pub UserTypeList : VecDeque<Option<Rc<RefCell<UserType>>>>,
+    pub user_type_list : VecDeque<Option<Rc<RefCell<UserType>>>>,
     pub parent : Option<Rc<RefCell<UserType>>>,
 }
 
@@ -22,11 +22,11 @@ impl UserType
    /* pub fn clone(&self) -> Self
     {
         let mut x = UserType{name : self.name.clone(), ilist : self.ilist.clone(), 
-                                    item_list : self.item_list.clone(), UserTypeList : VecDeque::new(), parent : Option::None};
+                                    item_list : self.item_list.clone(), user_type_list : VecDeque::new(), parent : Option::None};
         
-        if self.UserTypeList.is_empty() { return x; }
+        if self.user_type_list.is_empty() { return x; }
 
-        x.UserTypeList = self.UserTypeList.clone();
+        x.user_type_list = self.user_type_list.clone();
         
 
         x
@@ -39,7 +39,7 @@ impl UserType
     pub fn new(name : String) -> Self 
     {
         UserType{
-            name : name.clone(), ilist : Vec::new(), item_list : Vec::new(), UserTypeList : VecDeque::new(), parent : Option::None
+            name : name.clone(), ilist : Vec::new(), item_list : Vec::new(), user_type_list : VecDeque::new(), parent : Option::None
         }
     }
 
@@ -67,12 +67,12 @@ impl UserType
             result += " \n";
         }
 
-        let n = self.UserTypeList.len();
+        let n = self.user_type_list.len();
   
         for i in 0..n 
         {
             {
-                match &self.UserTypeList[i] {
+                match &self.user_type_list[i] {
                     Some(x) => {
                         let name = x.borrow().get_name();
                         if name.is_empty() {
@@ -88,7 +88,7 @@ impl UserType
                 }
             }
             result += " { ";
-            match &self.UserTypeList[i] { 
+            match &self.user_type_list[i] { 
                 Some(x) => { 
                     let temp = x.borrow();
                     let temp2 = temp.to_string();
@@ -122,26 +122,26 @@ impl UserType
         self.ilist.push(2);
         
         ut.parent = self.parent.clone();
-        self.UserTypeList.push_back(Option::from(Rc::new(RefCell::new(ut.clone()))));
+        self.user_type_list.push_back(Option::from(Rc::new(RefCell::new(ut.clone()))));
     }
 
          // link?
     pub fn insert_UserType_item(&mut self, other : &mut Self) 
     {
-        let idx : usize = self.UserTypeList.len() - 1;
+        let idx : usize = self.user_type_list.len() - 1;
         if idx >= 0 {
             self.add_UserType_item(other);
         }
     }
 
-    pub fn get_UserTypeList_size(&self) -> usize
+    pub fn get_user_type_list_size(&self) -> usize
     {
-        return self.UserTypeList.len();
+        return self.user_type_list.len();
     }
 
-    pub fn get_UserTypeList(&self, idx : usize) -> Option<Rc<RefCell<UserType>>>
+    pub fn get_user_type_list(&self, idx : usize) -> Option<Rc<RefCell<UserType>>>
     {
-        return self.UserTypeList[idx].clone();
+        return self.user_type_list[idx].clone();
     }
 }
 

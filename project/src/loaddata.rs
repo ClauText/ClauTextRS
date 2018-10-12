@@ -120,7 +120,7 @@ impl LoadData
                         let mut temp = None;
                         {
                             match &nested_ut[brace_num - 1] {
-                                Some(y) => { temp = y.borrow().get_UserTypeList(y.borrow().get_UserTypeList_size() - 1); } // nested_ut[y.borrow().get_UserTypeList_size() - 1]; }
+                                Some(y) => { temp = y.borrow().get_user_type_list(y.borrow().get_user_type_list_size() - 1); } // nested_ut[y.borrow().get_user_type_list_size() - 1]; }
                                 None => { }
                             }
                         }
@@ -181,7 +181,7 @@ impl LoadData
                         let mut temp = None;
                         {
                             match &nested_ut[brace_num - 1] {
-                                Some(y) => { temp = y.borrow().get_UserTypeList(y.borrow().get_UserTypeList_size() - 1); } // nested_ut[y.borrow().get_UserTypeList_size() - 1]; }
+                                Some(y) => { temp = y.borrow().get_user_type_list(y.borrow().get_user_type_list_size() - 1); } // nested_ut[y.borrow().get_user_type_list_size() - 1]; }
                                 None => { }
                             }
                         }
@@ -274,7 +274,7 @@ impl LoadData
                         let mut temp = None;
                         {
                             match &nested_ut[brace_num - 1] {
-                                Some(y) => { temp = y.borrow().get_UserTypeList(y.borrow().get_UserTypeList_size() - 1); } // nested_ut[y.borrow().get_UserTypeList_size() - 1]; }
+                                Some(y) => { temp = y.borrow().get_user_type_list(y.borrow().get_user_type_list_size() - 1); } // nested_ut[y.borrow().get_user_type_list_size() - 1]; }
                                 None => { }
                             }
                         }
